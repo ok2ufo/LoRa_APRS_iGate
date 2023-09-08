@@ -20,7 +20,7 @@
 Configuration   Config;
 WiFiClient      espClient;
 
-String          versionDate           = "2023.08.29";
+String          versionDate           = "2023.08.29 + mod";
 int             myWiFiAPIndex         = 0;
 int             myWiFiAPSize          = Config.wifiAPs.size();
 WiFi_AP         *currentWiFi          = &Config.wifiAPs[myWiFiAPIndex];
@@ -37,6 +37,10 @@ bool            WiFiConnect           = true;
 int             lastStationModeState  = 1;
 
 String          batteryVoltage;
+
+// ********* OK2UFO ********
+int             lastTelemetryPacket   = 0;
+// *************************
 
 std::vector<String> lastHeardStation;
 std::vector<String> lastHeardStation_temp;
@@ -56,6 +60,7 @@ void setup() {
   Utils::startServer();
   SYSLOG_Utils::setup();
   BME_Utils::setup();
+  TELEMETRY::setup();   // ******* OK2UFO *********
 }
 
 void loop() {
